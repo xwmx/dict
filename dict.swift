@@ -5,7 +5,7 @@
 // Swift rewrite of a MacRuby original by David Kendal ( @dpk )
 //
 // Run with ./dict or add a .swift extension and compile with:
-//   xcrun --sdk macosx swift -o dict dict.swift
+//   xcrun --sdk macosx swiftc -o dict dict.swift
 
 
 import CoreServices
