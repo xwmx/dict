@@ -12,7 +12,7 @@ import CoreServices
 import Foundation
 
 // Construct the help messaged when given a program name.
-func helpMessage(programName: String) -> String {
+func helpMessageAs(programName: String) -> String {
   let message = "Usage: \(programName) [options] word ...\n" +
              "  -h  print these usage instructions"
   return message
@@ -20,7 +20,7 @@ func helpMessage(programName: String) -> String {
 
 // When passed valid input, either print the definition of the word or, if no
 // definition for the word is present, print and error stating that.
-func printDefinition(word: NSString) {
+func printDefinitionFor(word: NSString) {
   let wlen = DCSGetTermRangeInString(nil, word, 0)
   let trimmedWord = word.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
   if trimmedWord.isEmpty {
@@ -55,14 +55,14 @@ func run() {
   arguments.removeAtIndex(0)
 
   if arguments.isEmpty {
-    printDefinition(input())
+    printDefinitionFor(input())
   } else {
     for argument in arguments {
       switch argument {
       case "-h":
-        println(helpMessage(programName))
+        println(helpMessageAs(programName))
       default:
-        printDefinition(argument);
+        printDefinitionFor(argument);
       }
     }
   }
