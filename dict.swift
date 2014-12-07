@@ -21,7 +21,7 @@ func helpMessageAs(programName: String) -> String {
 func errorMessageDataFor(word: String) -> NSData {
     let errorMessage = "dict: no definition for \(word)\n"
     let errorMessageData = errorMessage.dataUsingEncoding(NSUTF8StringEncoding)
-    return (errorMessageData as NSData!)
+    return errorMessageData!
 }
 
 // When passed valid input, either print the definition of the word or, if no
