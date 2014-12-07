@@ -19,7 +19,7 @@ func helpMessageAs(programName: String) -> String {
 }
 
 func errorMessageDataFor(word: String) -> NSData {
-    let errorMessage: NSString = "dict: no definition for \(word)\n"
+    let errorMessage = "dict: no definition for \(word)\n"
     let errorMessageData: NSData! = errorMessage.dataUsingEncoding(NSUTF8StringEncoding)
     return errorMessageData
 }
