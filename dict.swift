@@ -44,8 +44,8 @@ func printDefinitionFor(word: NSString) {
 func input() -> String {
     let keyboard = NSFileHandle.fileHandleWithStandardInput()
     let inputData = keyboard.availableData
-    let inputString: NSString! = NSString(data: inputData, encoding:NSUTF8StringEncoding)
-    let trimmedString = inputString.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())
+    let inputString = NSString(data: inputData, encoding:NSUTF8StringEncoding)
+    let trimmedString = inputString!.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())
     return trimmedString
 }
 
