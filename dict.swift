@@ -18,6 +18,12 @@ func helpMessageAs(programName: String) -> String {
   return message
 }
 
+func errorMessageDataFor(word: String) -> NSData {
+  let errorMessage: NSString = "dict: no definition for \(word)\n"
+  let errorMessageData: NSData! = errorMessage.dataUsingEncoding(NSUTF8StringEncoding)
+  return errorMessageData
+}
+
 // When passed valid input, either print the definition of the word or, if no
 // definition for the word is present, print and error stating that.
 func printDefinitionFor(word: NSString) {
@@ -27,9 +33,7 @@ func printDefinitionFor(word: NSString) {
     // do nothing when passed empty string
   } else if wlen.location == -1 {
     let stderr = NSFileHandle.fileHandleWithStandardError()
-    let errorMsg: NSString = "dict: no definition for \(trimmedWord)\n"
-    let errorMsgData: NSData! = errorMsg.dataUsingEncoding(NSUTF8StringEncoding)
-    stderr.writeData(errorMsgData)
+    stderr.writeData(errorMessageDataFor(trimmedWord))
   } else {
     let wordDefinition = DCSCopyTextDefinition(nil, trimmedWord, wlen).takeUnretainedValue()
     println(wordDefinition)
