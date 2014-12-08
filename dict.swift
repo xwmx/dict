@@ -28,7 +28,7 @@ func errorMessageDataFor(word: String, programName: String) -> NSData {
 
 // When passed valid input, either print the definition of the word or, if no
 // definition for the word is present, print and error stating that.
-func printDefinitionFor(word: NSString, programName: String) {
+func printDefinitionFor(word: String, programName: String) {
     let wlen = DCSGetTermRangeInString(nil, word, 0)
     let trimmedWord = word.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
     if trimmedWord.isEmpty {
