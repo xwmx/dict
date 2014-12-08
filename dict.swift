@@ -4,6 +4,8 @@
 //
 // Swift rewrite of a MacRuby original by David Kendal ( @dpk )
 //
+// William Melody, 2014 - https://github.com/alphabetum/dict
+//
 // Run with ./dict.swift or compile with:
 //   xcrun --sdk macosx swiftc -o dict dict.swift
 
