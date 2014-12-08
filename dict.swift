@@ -1,4 +1,4 @@
-#!/usr/bin/env xcrun swift
+#!/usr/bin/env swift
 
 // dict - Make a lookup in Mac OS X's included dictionary. Requires Swift.
 //
