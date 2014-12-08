@@ -18,22 +18,22 @@ func helpMessageAs(programName: String) -> String {
     return message
 }
 
-func errorMessageDataFor(word: String) -> NSData {
-    let errorMessage = "dict: no definition for \(word)\n"
+func errorMessageDataFor(word: String, programName: String) -> NSData {
+    let errorMessage = "\(programName): no definition for \(word)\n"
     let errorMessageData = errorMessage.dataUsingEncoding(NSUTF8StringEncoding)
     return errorMessageData!
 }
 
 // When passed valid input, either print the definition of the word or, if no
 // definition for the word is present, print and error stating that.
-func printDefinitionFor(word: NSString) {
+func printDefinitionFor(word: NSString, programName: String) {
     let wlen = DCSGetTermRangeInString(nil, word, 0)
     let trimmedWord = word.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
     if trimmedWord.isEmpty {
          // do nothing when passed empty string
     } else if wlen.location == -1 {
         let stderr = NSFileHandle.fileHandleWithStandardError()
-        stderr.writeData(errorMessageDataFor(trimmedWord))
+        stderr.writeData(errorMessageDataFor(trimmedWord, programName))
     } else {
         let wordDefinition = DCSCopyTextDefinition(nil, trimmedWord, wlen).takeUnretainedValue()
         println(wordDefinition)
@@ -59,14 +59,14 @@ func run() {
     arguments.removeAtIndex(0)
 
     if arguments.isEmpty {
-        printDefinitionFor(input())
+        printDefinitionFor(input(), programName)
     } else {
         for argument in arguments {
             switch argument {
             case "-h":
                 println(helpMessageAs(programName))
             default:
-                printDefinitionFor(argument);
+                printDefinitionFor(argument, programName);
             }
         }
     }
